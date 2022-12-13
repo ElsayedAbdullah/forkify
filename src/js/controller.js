@@ -33,10 +33,11 @@ const searchResultsController = async function () {
   try {
     // 1) Get query from Search Input
     const query = searchView.getQuery();
-
+    if (!query) return;
     // 2) Load Search Results
     await model.loadSearchResults(query);
 
+    // 3) render results
     console.log(model.state.search.results);
   } catch (error) {
     console.error(error);
