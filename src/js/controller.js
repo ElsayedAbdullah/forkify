@@ -3,10 +3,13 @@ import * as model from './model.js';
 import 'core-js/stable';
 // polyfilling async await
 import 'regenerator-runtime/runtime';
+import addRecipeView from './views/addRecipeView.js';
+import bookmarksView from './views/bookmarksView.js';
 import paginationView from './views/paginationView.js';
 import recipeView from './views/recipeView.js';
 import resultsView from './views/resultsView.js';
 import searchView from './views/searchView.js';
+import { async } from 'regenerator-runtime';
 
 // https://forkify-api.herokuapp.com/v2
 ///////////////////////////////////////
@@ -23,6 +26,10 @@ const recipeController = async function () {
 
     // Spinner
     recipeView.renderSpinner();
+
+    // 0) update results view to mark selected search result
+    resultsView.update(model.getSearchResultsPage());
+    bookmarksView.update(model.state.bookmarks);
 
     // 1) Loading Recipe
     await model.loadRecipe(id);
@@ -64,10 +71,55 @@ const controlPagination = function (goToPage) {
   paginationView.render(model.state.search);
 };
 
+const controlServings = function (updateTo) {
+  // update the recipe servings in the state
+  model.updateServings(updateTo);
+  // update the recipe view
+  // recipeView.render(model.state.recipe);
+  recipeView.update(model.state.recipe);
+};
+
+const controlAddBookmark = function () {
+  // Add or Remove Bookmark
+  if (!model.state.recipe.bookmarked) {
+    model.addBookmark(model.state.recipe);
+  } else {
+    model.deleteBookmark(model.state.recipe.id);
+  }
+
+  // console.log(model.state.recipe);
+  // update recipe view
+  recipeView.update(model.state.recipe);
+
+  // render bookmark
+  bookmarksView.render(model.state.bookmarks);
+};
+
+const controlBookmark = function () {
+  bookmarksView.render(model.state.bookmarks);
+};
+
+const controlAddRecipe = async function (newRecipe) {
+  try {
+    // Upload new recipe
+    await model.uploadRecipe(newRecipe);
+
+    console.log(model.state.recipe);
+  } catch (error) {
+    console.error(error);
+    addRecipeView.renderError(error.message);
+  }
+};
+
 const init = function () {
+  // this is the first handler to do because it bring the data from local storage
+  bookmarksView.addHandlerRenderBookmark(controlBookmark);
   recipeView.addHandlerRender(recipeController);
+  recipeView.addHandlerUpdateServings(controlServings);
+  recipeView.addHandlerAddBookmark(controlAddBookmark);
   searchView.addHandlerSearch(searchResultsController);
   paginationView.addHandlerClick(controlPagination);
+  addRecipeView.addHandlerUpload(controlAddRecipe);
   document.querySelector('.search__field').focus();
 };
 
