@@ -131,10 +131,6 @@ const controlAddRecipe = async function (newRecipe) {
   }
 };
 
-const newFeature = function () {
-  console.log('Welcome to the application');
-};
-
 const init = function () {
   // this is the first handler to do because it bring the data from local storage
   bookmarksView.addHandlerRenderBookmark(controlBookmark);
@@ -145,7 +141,6 @@ const init = function () {
   paginationView.addHandlerClick(controlPagination);
   addRecipeView.addHandlerUpload(controlAddRecipe);
   document.querySelector('.search__field').focus();
-  newFeature;
 };
 
 init();
