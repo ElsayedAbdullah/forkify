@@ -1,0 +1,65 @@
+@media only screen and (max-width: 50em) {
+  .btn {
+    padding: 1.5rem 3rem;
+  }
+}
+
+@media only screen and (max-width: 61.25em) {
+  .search__field::-webkit-input-placeholder {
+    color: #fff;
+  }
+
+  .search__field::-moz-placeholder {
+    color: #fff;
+  }
+
+  .search__field:-ms-input-placeholder {
+    color: #fff;
+  }
+
+  .search__field::-ms-input-placeholder {
+    color: #fff;
+  }
+
+  .search__field::placeholder {
+    color: #fff;
+  }
+}
+
+@media only screen and (max-width: 47em) {
+  .nav {
+    grid-column: 1/-1;
+  }
+}
+
+@media only screen and (max-width: 64em) {
+  .header__logo {
+    height: 2.6rem;
+  }
+}
+
+@media only screen and (max-width: 47em) {
+  .header {
+    grid-template-columns: 1fr 3fr;
+  }
+}
+
+@media only screen and (max-width: 64em) {
+  .search-results {
+    grid-column: 1/-1;
+    height: 25rem;
+    overflow-y: scroll;
+  }
+}
+
+@media only screen and (max-width: 64em) {
+  .recipe {
+    grid-area: 3/1/4/-1;
+  }
+}
+
+@media only screen and (max-width: 61.25em) {
+  .recipe__title {
+    width: 70%;
+  }
+}
