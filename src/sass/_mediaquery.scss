@@ -4,28 +4,6 @@
   }
 }
 
-@media only screen and (max-width: 61.25em) {
-  .search__field::-webkit-input-placeholder {
-    color: #fff;
-  }
-
-  .search__field::-moz-placeholder {
-    color: #fff;
-  }
-
-  .search__field:-ms-input-placeholder {
-    color: #fff;
-  }
-
-  .search__field::-ms-input-placeholder {
-    color: #fff;
-  }
-
-  .search__field::placeholder {
-    color: #fff;
-  }
-}
-
 @media only screen and (max-width: 47em) {
   .nav {
     grid-column: 1/-1;
@@ -61,5 +39,27 @@
 @media only screen and (max-width: 61.25em) {
   .recipe__title {
     width: 70%;
+  }
+}
+
+@media only screen and (max-width: 61.25em) {
+  .search__field::-webkit-input-placeholder {
+    color: #fff;
+  }
+
+  .search__field::-moz-placeholder {
+    color: #fff;
+  }
+
+  .search__field:-ms-input-placeholder {
+    color: #fff;
+  }
+
+  .search__field::-ms-input-placeholder {
+    color: #fff;
+  }
+
+  .search__field::placeholder {
+    color: #fff;
   }
 }
